@@ -3,16 +3,27 @@
 ?>
 
     <div id="form">
-        <form method="post" action="include/database/register_user.php">
+        <form >
             <input type="text" class="text_field" id="name" placeholder="Ange namn" />
-            <input type="password" class="text_field" id="pass" placeholder="Ange lösenord" />
             <input type="text" class="text_field" id="mail" placeholder="Ange mailadress" />
             <input type="text" class="text_field" id="persnum" placeholder="Ange personnummer" />
+            </br>
+            <input type="password" class="text_field" id="pass" placeholder="Ange lösenord" />
+            <input type="password" class="text_field" id="pass_2" placeholder="Ange lösenordet igen" />
 
-            <p style="clear: left;">
 
-            </p>
-            <input type="submit" id="submit" name="submit" value="Registrera dig" />
+            <p style="clear: left;"></p>
+
+            <?php
+                $salt = "";
+
+                for($x = 0; $x < 10; $x++){
+                    $rand_num = rand(0,26) + 97;
+                    $salt = $salt . chr($rand_num);
+                }
+            ?>
+
+            <input type="submit" id="submit" onclick="_send_data.register_user('<?=$salt?>');" value="Registrera dig" />
 
         </form>
     </div>
