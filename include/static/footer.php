@@ -2,6 +2,8 @@
 
 
 
+        <div id="footer"> <!--TODO - create the footer -->
+
         </div>
         </div>
 
