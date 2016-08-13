@@ -1,6 +1,8 @@
 
 
 
+
+        </div>
         </div>
 
         <script src='assets/js/jquery.js'></script>
