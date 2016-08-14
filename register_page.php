@@ -8,13 +8,11 @@
 
             <div id="id_field">
                 <input type="text" class="text_field" id="persnum" placeholder="Ange personnummer" />
-                <p class="text_field_description">(ååmmdd)</p>
+                <p class="text_field_description">(ååmmddxxxx)</p>
             </div>
 
             <input type="text" class="text_field" id="name" placeholder="Ange namn" />
             <input type="text" class="text_field" id="mail" placeholder="Ange mailadress" />
-
-
 
             </br>
             <input type="password" class="text_field" id="pass" placeholder="Ange lösenord" />
