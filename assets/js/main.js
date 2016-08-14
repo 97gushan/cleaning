@@ -6,7 +6,7 @@ var _send_data = {
             pass : $.trim($("#pass").val()),
             mail : $.trim($("#mail").val()),
             persnum : $.trim($("#persnum").val()),
-            salt : text
+            salt : $.trim(text)
         };
 
         // Get the second password
@@ -28,12 +28,14 @@ var _send_data = {
                can_registration_happen = false;
 
         }else{
+            // check if the mail is valid
             var emailReg = /^[A-Z0-9._%+-]+@([A-Z0-9-]+\.)+[A-Z]{2,4}$/i;
 
             if(!emailReg.test(params["mail"])){
                 error_message += "Felaktig mailadress \n";
                 can_registration_happen = false;
             }else{
+                // Check if the passwords match
                 if(params["pass"] != pass_2){
                     error_message += "Lösenorden stämer inte överens";
                     can_registration_happen = false;
@@ -53,7 +55,7 @@ var _send_data = {
                 }else if(data == 0){
                     alert("Registrering misslyckades");
                 }else{
-                    alert("Programmet krashade");
+                    alert(data);
                 }
             });
         //}
