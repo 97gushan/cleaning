@@ -67,29 +67,81 @@
 
         }
 
+        private function is_id_unique($persnum){
+            # This method checks if the persnum entered is the same as one of the
+            # already registered persnums ->
+            # unique -> return true to enable registration to happen
+            # not unique -> return a error message
+
+            $this->Connect();
+            $sql = "SELECT persnum FROM user";
+
+            if($stmt = $this->conn->prepare($sql)){
+                $stmt->execute();
+
+                if($stmt->error){
+                    return "Error: Could not execute SQL command";
+                }
+
+                # get the mails from the DB
+                $stmt->bind_result($registered_id);
+
+                # create an array to store the mail adresses
+                $id_list = array();
+
+                # add the addresses to the array
+                while($stmt->fetch()){
+                    array_push($id_list, $registered_id);
+                }
+
+                $stmt->free_result();
+
+                $unique = true;
+
+                # check if the emailadress is equal to one of the stored emails
+                for($n = 0; $n < count($id_list); $n++){
+                    if(strcmp($id_list[$n], $persnum) == 0){
+                        $unique = false;
+                        break;
+                    }
+                }
+
+                $stmt->close();
+                $this->conn->close();
+
+                return $unique;
+            }
+        }
+
         public function register_user($name, $mail, $persnum, $pass, $salt){
             # This method takes a name, mail, personal id number, password and salt
             # and uses these to register a new user to the DB
             $unique_mail = $this->is_mail_unique($mail);
+            $unique_id = $this->is_id_unique($persnum);
 
+            # check if the mail and personal id is unique
             if($unique_mail){
-                $this->Connect();
+                if($unique_id){
+                    $this->Connect();
 
-                $sql = "INSERT INTO user(name, mail, pass, salt, persnum) VALUES(?,?,?,?,?)";
+                    $sql = "INSERT INTO user(name, mail, pass, salt, persnum) VALUES(?,?,?,?,?)";
 
-                if($stmt = $this->conn->prepare($sql)){
-                    $stmt->bind_param("sssss", $name, $mail, $pass, $salt, $persnum);
+                    if($stmt = $this->conn->prepare($sql)){
+                        $stmt->bind_param("sssss", $name, $mail, $pass, $salt, $persnum);
 
-                    $stmt->execute();
+                        $stmt->execute();
 
-                    if($stmt->error){
-                        return "Error: Could not execute SQL command";
+                        if($stmt->error){
+                            return "Error: Could not execute SQL command";
+                        }
+
+                        $stmt->close();
+                        $this->conn->close();
+
+                        return true;
                     }
-
-                    $stmt->close();
-                    $this->conn->close();
-
-                    return true;
+                }else{
+                    return "Personnummret är redan registrerat";
                 }
             }else{
                 return "Mailadressen är upptagen";
