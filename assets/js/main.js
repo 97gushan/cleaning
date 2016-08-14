@@ -32,7 +32,7 @@ var _send_data = {
             var emailReg = /^[A-Z0-9._%+-]+@([A-Z0-9-]+\.)+[A-Z]{2,4}$/i;
 
             if(!emailReg.test(params["mail"])){
-                error_message += "Felaktig mailadress \n";
+                error_message += "Detta är ej en fungerande mailadress \n";
                 can_registration_happen = false;
             }else{
                 // Check if the passwords match
@@ -43,12 +43,11 @@ var _send_data = {
             }
         }
 
-
-
-
+        // have an error occured?? if yes, show an error message
         if(!can_registration_happen){
-            //alert(error_message);
-        }//else{ <-- TODO when everything is ready place the code below inside the else statement
+            alert(error_message);
+        }else{
+            // Call  register_user.php and register the user
             $.get("include/database/register_user.php", params, function(data){
                 if(data == 1){
                     alert("Registrering lyckades!");
@@ -58,7 +57,7 @@ var _send_data = {
                     alert(data);
                 }
             });
-        //}
+        }
 
     }
 
