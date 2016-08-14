@@ -23,7 +23,7 @@
                 }
             ?>
 
-            <input type="submit" id="submit" onclick="_send_data.register_user('<?=$salt?>');" value="Registrera dig" />
+            <input type="button" id="submit" onclick="_send_data.register_user('<?=$salt?>');" value="Registrera dig" />
 
         </form>
     </div>
