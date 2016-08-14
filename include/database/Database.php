@@ -10,6 +10,7 @@
         private $pass = "root";
 
         private function Connect(){
+            # This method creates a connection to the DB
             $this->conn = new mysqli($this->host, $this->user,$this->pass,$this->db);
 
             if($this->conn->error){
@@ -19,27 +20,85 @@
             }
         }
 
-        public function register_user($name, $mail, $persnum, $pass, $salt){
+        private function is_mail_unique($mail){
+            # This method checks if the email entered is the same as one of the
+            # already registered emails->
+            # unique -> return true to enable registration to happen
+            # not unique -> return a error message
 
             $this->Connect();
-
-            $sql = "INSERT INTO user(name, mail, pass, salt, persnum) VALUES(?,?,?,?,?)";
+            $sql = "SELECT mail FROM user";
 
             if($stmt = $this->conn->prepare($sql)){
-                $stmt->bind_param("sssss", $name, $mail, $pass, $salt, $persnum);
-
                 $stmt->execute();
 
                 if($stmt->error){
                     return false;
                 }
 
+                # get the mails from the DB
+                $stmt->bind_result($registered_mail);
+
+                # create an array to store the mail adresses
+                $mail_list = array();
+
+                # add the addresses to the array
+                while($stmt->fetch()){
+                    array_push($mail_list, $registered_mail);
+                }
+
+                $stmt->free_result();
+
+                $unique = true;
+
+                # check if the emailadress is equal to one of the stored emails
+                for($n = 0; $n < count($mail_list); $n++){
+                    if(strcmp($mail_list[$n], $mail) == 0){
+                        $unique = false;
+                        break;
+                    }
+                }
+
                 $stmt->close();
                 $this->conn->close();
 
-                return true;
+                return $unique;
             }
+
         }
+
+        public function register_user($name, $mail, $persnum, $pass, $salt){
+            # This method takes a name, mail, personal id number, password and salt
+            # and uses these to register a new user to the DB
+            $unique_mail = $this->is_mail_unique($mail);
+
+            if($unique_mail){
+                $this->Connect();
+
+                $sql = "INSERT INTO user(name, mail, pass, salt, persnum) VALUES(?,?,?,?,?)";
+
+                if($stmt = $this->conn->prepare($sql)){
+                    $stmt->bind_param("sssss", $name, $mail, $pass, $salt, $persnum);
+
+                    $stmt->execute();
+
+                    if($stmt->error){
+                        return false;
+                    }
+
+                    $stmt->close();
+                    $this->conn->close();
+
+                    return true;
+                }
+            }else{
+                return "Mailadressen är upptagen";
+            }
+
+
+        }
+
+
 
     }
 
