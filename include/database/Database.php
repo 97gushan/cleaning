@@ -150,6 +150,31 @@
 
         }
 
+        public function get_user_credentials($mail){
+            $this->Connect();
+
+            $sql = "SELECT pass, salt FROM user WHERE mail=?";
+
+            if($stmt = $this->conn->prepare($sql)){
+                $stmt->bind_param("s", $mail);
+
+                $stmt->execute();
+
+                if($stmt->error){
+                    return "Error: Could not execute SQL command";
+                }
+
+                $stmt->bind_result($pass, $salt);
+                $stmt->fetch();
+                $stmt->free_result();
+
+                $stmt->close();
+                $this->conn->close();
+
+                return [$pass, $salt];
+
+            }
+        }
 
 
     }
