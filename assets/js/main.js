@@ -51,6 +51,7 @@ var _send_data = {
             $.get("include/database/register_user.php", params, function(data){
                 if(data == 1){
                     alert("Registrering lyckades!");
+                    window.location.assign("index.php");
                 }else if(data == 0){
                     alert("Registrering misslyckades");
                 }else{
@@ -59,6 +60,23 @@ var _send_data = {
             });
         }
 
+    },
+
+    login_user : function(salt){
+        var params = {
+            mail : $.trim($("#mail").val()),
+            pass : $.trim($("#pass").val())
+        };
+
+        $.get("include/database/login_user.php", params, function(data){
+            if(data == 1){
+                alert("Inloggning lyckades");
+            }else if(data == 0){
+                alert("Emailadress och lösenord stämmer inte överens");
+            }else{
+                alert(data);
+            }
+        });
     }
 
 };
