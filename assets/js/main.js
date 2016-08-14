@@ -71,6 +71,8 @@ var _send_data = {
         $.get("include/database/login_user.php", params, function(data){
             if(data == 1){
                 alert("Inloggning lyckades");
+                // TODO reload index page
+                
             }else if(data == 0){
                 alert("Emailadress och lösenord stämmer inte överens");
             }else{

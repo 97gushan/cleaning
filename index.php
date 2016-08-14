@@ -1,7 +1,8 @@
 <?php
     include("include/static/header.php");
 ?>
-
+    <!-- TODO check if the user is logged in, if yes then display the
+        ratin page-->
 
     <div id="form">
         <form method="post" action="login.php">

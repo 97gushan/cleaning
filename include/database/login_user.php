@@ -15,6 +15,7 @@
     $crypted_pass = crypt($pass, $salt);
 
     if(strcmp($crypted_pass, $saved_pass) == 0){
+        # TODO save to session
         echo true;
     }else{
         echo false;
