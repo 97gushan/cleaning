@@ -33,7 +33,7 @@
                 $stmt->execute();
 
                 if($stmt->error){
-                    return false;
+                    return "Error: Could not execute SQL command";
                 }
 
                 # get the mails from the DB
@@ -83,7 +83,7 @@
                     $stmt->execute();
 
                     if($stmt->error){
-                        return false;
+                        return "Error: Could not execute SQL command";
                     }
 
                     $stmt->close();
