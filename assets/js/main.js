@@ -45,8 +45,18 @@ var _send_data = {
 
 
         if(!can_registration_happen){
-            alert(error_message);
-        }
+            //alert(error_message);
+        }//else{ <-- TODO when everything is ready place the code below inside the else statement
+            $.get("include/database/register_user.php", params, function(data){
+                if(data == 1){
+                    alert("Registrering lyckades!");
+                }else if(data == 0){
+                    alert("Registrering misslyckades");
+                }else{
+                    alert("Programmet krashade");
+                }
+            });
+        //}
 
     }
 
