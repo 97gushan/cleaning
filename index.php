@@ -9,10 +9,10 @@
 <?php
     if(isset($_SESSION["login"])){
         if($_SESSION["login"] == "USER"){
-            include("rating_page.php");
+            include("include/views/rating_page.php");
         }
     }else{
-        include("login_page.php");
+        include("include/views/login_page.php");
     }
 
 
