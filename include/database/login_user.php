@@ -1,4 +1,6 @@
 <?php
+    session_start();
+
 
     include("Database.php");
 
@@ -15,7 +17,7 @@
     $crypted_pass = crypt($pass, $salt);
 
     if(strcmp($crypted_pass, $saved_pass) == 0){
-        # TODO save to session
+        $_SESSION["login"] = "USER";
         echo true;
     }else{
         echo false;
