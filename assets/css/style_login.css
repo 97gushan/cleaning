@@ -1,0 +1,8 @@
+.register_link{
+    float: left;
+}
+
+.email_link{
+    float: right;
+    padding-right: 20px;
+}

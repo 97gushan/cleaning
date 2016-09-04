@@ -4,6 +4,7 @@
     <head>
         <link rel="stylesheet" href="assets/css/style.css" />
         <link rel="stylesheet" href="assets/css/style_register.css" />
+        <link rel="stylesheet" href="assets/css/style_login.css" />
         <meta charset="utf-8" />
         <title>Prototype</title>
 

@@ -5,5 +5,6 @@
         <input type="button" value="Logga in" onclick="_send_data.login_user();" />
     </form>
 
-    <a href="register_page.php">Registrera dig</a>
+    <a class="register_link "href="register_page.php">Registrera dig</a>
+    <a class="email_link " href="newpass_page.php">Glömt lösenord?</a>
 </div>
