@@ -18,7 +18,7 @@
 
                 die("Error: $error_message");
             }
-        }
+        }# testar enbart
 
         private function create_table(){
             $this->Connect();
