@@ -7,7 +7,7 @@
 
         private $host = "localhost";
         private $user = "root";
-        private $pass = "root";
+        private $pass = "25stenar";
 
         private function Connect(){
             # This method creates a connection to the DB
@@ -17,6 +17,23 @@
                 $error_message = $this->conn->connect_errno;
 
                 die("Error: $error_message");
+            }
+        }
+
+        private function create_table(){
+            $this->Connect();
+
+            $sql = "CREATE TABLE user";
+
+            if($stmt = $this->conn->prepare($sql)){
+                $stmt->execute();
+
+                if($stmt->error){
+                    return "Error: Could not execute SQL command";
+                }
+
+                $stmt->close();
+                $this->conn->close();
             }
         }
 
@@ -116,6 +133,8 @@
         public function register_user($name, $mail, $persnum, $pass, $salt){
             # This method takes a name, mail, personal id number, password and salt
             # and uses these to register a new user to the DB
+
+
             $unique_mail = $this->is_mail_unique($mail);
             $unique_id = $this->is_id_unique($persnum);
 
@@ -144,9 +163,11 @@
                     return "Personnummret är redan registrerat";
                 }
             }else{
-                return "Mailadressen är upptagen";
+                return "Mailadressen är upptagen123";
             }
 
+
+            #$this->create_table();
 
         }
 
