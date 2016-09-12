@@ -8,7 +8,7 @@
         $pass = $pass . chr($rand_num);
     }
     */
-
+    # Testingtesting
     mail("97gustavh@gmail.com", $given_mail, "Text text etxxt text tex", "From: din_son");
 
     header("Refresh:0; url='../../index.php'");
