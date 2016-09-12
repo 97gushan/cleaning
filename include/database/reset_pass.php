@@ -1,6 +1,6 @@
 <?php
 
-    $given_mail = filter_input(INPUT_GET, "mail", FILTER_VALIDATE_EMAIL);
+    $given_mail = $_POST["mail"];
     /*
     $pass = "";
     for($x = 0; $x < 7; $x++){
@@ -8,7 +8,7 @@
         $pass = $pass . chr($rand_num);
     }
     */
-    # Testingtestingwasdasdasd
+    # send the mail
     mail("97gustavh@gmail.com", $given_mail, "Text text etxxt text tex", "From: din_son");
 
     header("Refresh:0; url='../../index.php'");
