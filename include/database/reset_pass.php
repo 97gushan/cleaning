@@ -25,7 +25,9 @@
 
     	$crypt_pass = crypt($pass, $salt);
 
-    	mail($given_mail, "Nytt lösenord", $pass, "From: reset_pass");
+        $mail_content = ;
+
+    	mail($given_mail, "Nytt lösenord","Ditt nya lösenord är: " . $pass . ". Var vänlig byt det vid inloggning", "From: reset_pass");
 
     	if($db->new_pass($crypt_pass,$salt,$given_mail)){
         	header("Refresh:0; url='../../index.php'");
