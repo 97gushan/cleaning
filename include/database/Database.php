@@ -200,10 +200,10 @@
         public function new_pass($pass,$salt, $mail){
             $this->Connect();
 
-            $sql = "UPDATE user SET pass, salt VALUES(?,?) WHERE mail=?";
+            $sql = "UPDATE user SET pass=?, salt=?  WHERE mail=?";
 
             if($stmt = $this->conn->prepare($sql)){
-                $stmt->bind_param("ss", $pass, $salt);
+                $stmt->bind_param("sss", $pass, $salt, $mail);
 
                 $stmt->execute();
 
@@ -215,10 +215,8 @@
                 $this->conn->close();
 
                 return true;
+                }
             }
         }
-
-    }
-
 
 ?>
