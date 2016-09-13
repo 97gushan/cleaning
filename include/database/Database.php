@@ -163,7 +163,7 @@
                     return "Personnummret är redan registrerat";
                 }
             }else{
-                return "Mailadressen är upptagen123";
+                return "Mailadressen är upptagen";
             }
 
 
@@ -197,6 +197,26 @@
             }
         }
 
+        public function new_pass($pass,$salt, $mail){
+            $this->Connect();
+
+            $sql = "UPDATE user SET pass, salt VALUES(?,?) WHERE mail=?";
+
+            if($stmt = $this->conn->prepare($sql)){
+                $stmt->bind_param("ss", $pass, $salt);
+
+                $stmt->execute();
+
+                if($stmt->error){
+                    return "Error: Could not execute SQL command";
+                }
+
+                $stmt->close();
+                $this->conn->close();
+
+                return true;
+            }
+        }
 
     }
 
