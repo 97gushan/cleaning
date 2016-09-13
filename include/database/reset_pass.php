@@ -23,8 +23,9 @@
 
         $crypt_pass = crypt($pass, $salt);
 
-        if($db->new_pass($pass,$salt,$given_mail)){
-            mail($given_mail, "Nytt lösenord", $pass, "From: reset_pass");
+        mail($given_mail, "Nytt lösenord", $pass, "From: reset_pass");
+
+        if($db->new_pass($crypt_pass,$salt,$given_mail)){
             header("Refresh:0; url='../../index.php'");
         }
 
