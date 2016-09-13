@@ -37,7 +37,7 @@
             }
         }
 
-        private function is_mail_unique($mail){
+        public function is_mail_unique($mail){
             # This method checks if the email entered is the same as one of the
             # already registered emails->
             # unique -> return true to enable registration to happen
