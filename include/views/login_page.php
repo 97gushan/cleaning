@@ -6,5 +6,5 @@
     </form>
 
     <a class="register_link "href="register_page.php">Registrera dig</a>
-    <a class="email_link " href="newpass_page.php">Glömt lösenord?</a>
+    <a class="email_link " href="forgott_pass_page.php">Glömt lösenord?</a>
 </div>
