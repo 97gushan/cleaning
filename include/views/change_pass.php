@@ -1,4 +1,0 @@
-<?php
-    #TODO <- make page
-
- ?>

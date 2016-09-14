@@ -4,4 +4,4 @@
     <input type="submit" name="submit" value="Logga ut" />
 </form>
 
-<a href="change_pass.php">Byt lösenord</a>
+<a href="../../change_pass.php">Byt lösenord</a>

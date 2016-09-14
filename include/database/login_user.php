@@ -18,7 +18,7 @@
 
     if(strcmp($crypted_pass, $saved_pass) == 0){
         $_SESSION["login"] = "USER";
-        #$_SESSION["user_id"] = $db->get_user_id($mail); <-- TODO create method
+        $_SESSION["user_id"] = $saved_data[2];
         echo true;
     }else{
         echo false;

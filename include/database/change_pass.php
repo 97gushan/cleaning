@@ -1,4 +1,5 @@
 <?php
+    session_start();
     include("Database.php");
 
 	$given_pass = $_POST["pass"];
@@ -15,9 +16,8 @@
 
 	$crypt_pass = crypt($pass, $salt);
 
-    /* <-- TODO create method
-	if($db->change_pass($crypt_pass,$salt,$given_mail)){
-    	header("Refresh:0; url='../../index.php'");
-	}
-    */
+
+	echo $db->change_pass($crypt_pass,$salt,$_SESSION["user_id"]);
+
+
 ?>

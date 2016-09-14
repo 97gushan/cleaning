@@ -174,7 +174,7 @@
         public function get_user_credentials($mail){
             $this->Connect();
 
-            $sql = "SELECT pass, salt FROM user WHERE mail=?";
+            $sql = "SELECT pass, salt, id FROM user WHERE mail=?";
 
             if($stmt = $this->conn->prepare($sql)){
                 $stmt->bind_param("s", $mail);
@@ -185,14 +185,14 @@
                     return "Error: Could not execute SQL command";
                 }
 
-                $stmt->bind_result($pass, $salt);
+                $stmt->bind_result($pass, $salt, $id);
                 $stmt->fetch();
                 $stmt->free_result();
 
                 $stmt->close();
                 $this->conn->close();
 
-                return [$pass, $salt];
+                return [$pass, $salt,$id];
 
             }
         }
@@ -215,8 +215,30 @@
                 $this->conn->close();
 
                 return true;
-                }
             }
         }
+
+        public function change_pass($pass, $salt, $id){
+
+            $this->Connect();
+
+            $sql = "UPDATE user SET pass=?, salt=?  WHERE id=?";
+
+            if($stmt = $this->conn->prepare($sql)){
+                $stmt->bind_param("sss", $pass, $salt, $id);
+
+                $stmt->execute();
+
+                if($stmt->error){
+                    return "Error: Could not execute SQL command";
+                }
+
+                $stmt->close();
+                $this->conn->close();
+
+                return true;
+            }
+        }
+    }
 
 ?>

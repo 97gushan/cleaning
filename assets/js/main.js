@@ -81,4 +81,25 @@ var _send_data = {
         });
     }
 
+
+    change_pass : function(){
+        var params = {
+            pass1 : $.trim($("#pass").val()),
+            pass2 : $.trim($("#pass2").val())
+        };
+
+        if(params["pass1"] === params["pass2"]){
+            $.get("include/database/change_pass.php", params, function(data){
+                if(data == 1){
+                    alert("Lösenord är bytt");
+                    window.location.assign("index.php");
+
+                }else if(data == 0){
+                    alert("Lösenord kunde inte bytas");
+                }else{
+                    alert(data);
+                }
+            });
+        }
+    }
 };
