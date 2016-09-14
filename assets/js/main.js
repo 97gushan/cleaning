@@ -110,15 +110,17 @@ var _send_data = {
             params.push({name : $("#text_"+ x.toString()).val(), something : $("#text2_"+ x.toString()).val()});
         }
 
-        var file_text = "";
+        var content = {
+            file_text : file_text = ""
+        };
 
         for(var x = 0; x < length; x++){
-            file_text = file_text + "\n" + params[x]["name"] + ";" + params[x]["something"];
+            content["file_text"] = content["file_text"] + "\n" + params[x]["name"] + ";" + params[x]["something"];
         }
 
-        alert(file_text);
+        alert(content["file_text"]);
 
-        $.get("include/database/save_to_file.php", file_text, function(data){
+        $.get("include/database/save_to_file.php", content, function(data){
             if(data == 1){
                 alert("Save sucessfull!");
             }else {
