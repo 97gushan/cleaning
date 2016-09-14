@@ -1,7 +1,7 @@
 <?php
     session_start();
 
-    include("../static/header");
+    include("include/static/header");
 ?>
 
     <form>
@@ -12,5 +12,5 @@
     </form>
 
 <?php
-    include("../static/footer");
+    include("include/static/footer");
  ?>
