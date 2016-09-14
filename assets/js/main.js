@@ -79,7 +79,7 @@ var _send_data = {
                 alert(data);
             }
         });
-    }
+    },
 
 
     change_pass : function(){
