@@ -9,9 +9,12 @@
 
 <form>
 <?php
-    for($x = 0; $x<10; $x++){
-        echo "<input type='text' id='text$x' placeholder='Wub'/>
-              <input type='text' id='text$x' placeholder='Hub'/>";
+    $length = 10;
+
+    for($x = 0; $x<$length; $x++){
+        echo "<input type='text' id='text_$x' placeholder='Wub'/>
+              <input type='text' id='text2_$x' placeholder='Hub'/>";
     }
 ?>
+    <input type="button" onclick="_send_data.save_timestamp(<?=$length?>);" />
 </form>
