@@ -104,7 +104,7 @@ var _send_data = {
     },
 
     save_timestamp : function(length){
-        var params = {};
+        var params = [];
 
         for(var x = 0; x < length; x++){
             params.push({name : $("#text_"+ x.toString()).val(), something : $("#text2_"+ x.toString()).val()});
