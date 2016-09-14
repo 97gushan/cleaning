@@ -222,7 +222,7 @@
 
             $this->Connect();
 
-            $sql = "UPDATE user SET pass=?, salt=?  WHERE id=?";
+            $sql = "UPDATE user SET pass=?, salt=?  WHERE persnum=?";
 
             if($stmt = $this->conn->prepare($sql)){
                 $stmt->bind_param("sss", $pass, $salt, $id);

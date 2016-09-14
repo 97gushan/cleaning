@@ -2,7 +2,7 @@
     session_start();
     include("Database.php");
 
-	$given_pass = $_POST["pass"];
+	$pass = filter_input(INPUT_GET, "pass1", FILTER_SANITIZE_STRING);
 
 
     $db = new Database();
