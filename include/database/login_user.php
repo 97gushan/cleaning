@@ -19,6 +19,7 @@
     if(strcmp($crypted_pass, $saved_pass) == 0){
         $_SESSION["login"] = "USER";
         $_SESSION["user_id"] = $saved_data[2];
+        $_SESSION["name"] = $saved_data[3];
         echo true;
     }else{
         echo false;

@@ -1,6 +1,7 @@
 <?php
+    session_start();
 
-    $file = "../../test.csv";
+    $file = "../../files/16_".$_SESSION["month"]."/16_".$_SESSION["month"]."_".$_SESSION["name"];
 
     $file_content = filter_input(INPUT_GET, "file_text", FILTER_SANITIZE_STRING);
 
