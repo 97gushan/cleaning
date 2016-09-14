@@ -117,5 +117,14 @@ var _send_data = {
         }
 
         alert(file_text);
+
+        $.get("include/database/save_to_file.php", file_text, function(data){
+            if(data == 1){
+                alert("Save sucessfull!");
+            }else {
+                alert("Save NOT sucessfull");
+            }
+
+        });
     }
 };
