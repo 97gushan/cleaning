@@ -185,7 +185,7 @@
                     return "Error: Could not execute SQL command";
                 }
 
-                $stmt->bind_result($pass, $salt, $id);
+                $stmt->bind_result($pass, $salt, $id, $name);
                 $stmt->fetch();
                 $stmt->free_result();
 

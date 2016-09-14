@@ -9,6 +9,8 @@
 
 <form>
 <?php
+    session_start();
+    
     $month_length = array("jan" => 31, "feb" => 28, "okt" => 31); #<-- TODO fill upp the whole list with months
     $month = "okt";
     $length = $month_length[$month];
