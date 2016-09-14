@@ -111,7 +111,7 @@ var _send_data = {
         }
 
         var content = {
-            file_text : file_text = ""
+            file_text : ""
         };
 
         for(var x = 0; x < length; x++){
