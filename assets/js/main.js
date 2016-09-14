@@ -109,5 +109,13 @@ var _send_data = {
         for(var x = 0; x < length; x++){
             params.push({name : $("#text_"+ x.toString()).val(), something : $("#text2_"+ x.toString()).val()});
         }
+
+        var file_text = "";
+
+        for(var x = 0; x < length; x++){
+            file_text = file_text + "\n" + params[x]["name"] + ";" + params[x]["something"];
+        }
+
+        alert(file_text);
     }
 };
