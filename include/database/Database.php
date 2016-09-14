@@ -174,7 +174,7 @@
         public function get_user_credentials($mail){
             $this->Connect();
 
-            $sql = "SELECT pass, salt, id FROM user WHERE mail=?";
+            $sql = "SELECT pass, salt, persnum FROM user WHERE mail=?";
 
             if($stmt = $this->conn->prepare($sql)){
                 $stmt->bind_param("s", $mail);
