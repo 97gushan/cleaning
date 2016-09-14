@@ -107,7 +107,7 @@ var _send_data = {
         var params = {};
 
         for(var x = 0; x < length; x++){
-            params.push({$("#text_"+ x.toString()).val(), $("#text2_"+ x.toString()).val()});
+            params.push({name : $("#text_"+ x.toString()).val(), something : $("#text2_"+ x.toString()).val()});
         }
     }
 };
